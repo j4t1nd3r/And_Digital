@@ -39,9 +39,10 @@ provider "aws" {
 # DATA
 ##################################################################################
 
-# Image - select latest
+# availability zones
 data "aws_availability_zones" "available" {}
 
+# image - select latest
 data "aws_ami" "aws-linux" {
   most_recent = true
   owners      = ["amazon"]
@@ -78,7 +79,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
 }
-# instance 1 subnet
+# instance 1 subnet / availability zone assignment
 resource "aws_subnet" "subnet1" {
   cidr_block              = var.subnet1_address_space
   vpc_id                  = aws_vpc.vpc.id
@@ -86,7 +87,7 @@ resource "aws_subnet" "subnet1" {
   availability_zone       = data.aws_availability_zones.available.names[0]
 
 }
-# instance 2 subnet
+# instance 2 subnet / availability zone assignment
 resource "aws_subnet" "subnet2" {
   cidr_block              = var.subnet2_address_space
   vpc_id                  = aws_vpc.vpc.id
@@ -94,12 +95,12 @@ resource "aws_subnet" "subnet2" {
   availability_zone       = data.aws_availability_zones.available.names[1]
 
 }
-# instance 3 subnet
+# instance 3 subnet / availability zone assignment
 resource "aws_subnet" "subnet3" {
   cidr_block              = var.subnet3_address_space
   vpc_id                  = aws_vpc.vpc.id
   map_public_ip_on_launch = "true"
-  availability_zone       = data.aws_availability_zones.available.names[1]
+  availability_zone       = data.aws_availability_zones.available.names[2]
 
 }
 
@@ -223,7 +224,7 @@ resource "aws_instance" "nginx1" {
     inline = [
       "sudo yum install nginx -y",
       "sudo service nginx start",
-      "echo '<html><head><title>Blue Team Server</title></head><body style=\"background-color:#1F778D\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">Blue Team</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html"
+      "echo '<html><head><title>Blue Team Server</title></head><body style=\"background-color:#1F778D\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">Availability Zone 1</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html"
     ]
   }
 }
@@ -247,7 +248,7 @@ resource "aws_instance" "nginx2" {
     inline = [
       "sudo yum install nginx -y",
       "sudo service nginx start",
-      "echo '<html><head><title>Green Team Server</title></head><body style=\"background-color:#77A032\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">Green Team</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html"
+      "echo '<html><head><title>Green Team Server</title></head><body style=\"background-color:#77A032\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">Availability Zone 2</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html"
     ]
   }
 }
@@ -271,7 +272,7 @@ resource "aws_instance" "nginx3" {
     inline = [
       "sudo yum install nginx -y",
       "sudo service nginx start",
-      "echo '<html><head><title>Green Team Server</title></head><body style=\"background-color:#ff0000\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">Red Team</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html"
+      "echo '<html><head><title>Green Team Server</title></head><body style=\"background-color:#ff0000\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">/Availability Zone 3</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html"
     ]
   }
 }
