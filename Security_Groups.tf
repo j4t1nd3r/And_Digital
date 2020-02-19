@@ -24,12 +24,12 @@ resource "aws_security_group" "nginx-sg" {
   name   = "nginx_sg"
   vpc_id = aws_vpc.vpc.id
 
-  # SSH access from anywhere
+  # SSH access from my pc only
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["188.210.212.98/32"]
   }
 
   # HTTP access from the VPC
