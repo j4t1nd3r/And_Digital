@@ -272,7 +272,7 @@ resource "aws_instance" "nginx3" {
     inline = [
       "sudo yum install nginx -y",
       "sudo service nginx start",
-      "echo '<html><head><title>Green Team Server</title></head><body style=\"background-color:#ff0000\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">/Availability Zone 3</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html"
+      "echo '<html><head><title>Green Team Server</title></head><body style=\"background-color:#ff0000\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">Availability Zone 3</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html"
     ]
   }
 }
