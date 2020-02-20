@@ -31,6 +31,7 @@ terraform apply "terraform.tfplan"
 #### Cleanup
 terraform destroy  
 >yes  
+
 cd .\and_digital_backend\  
 
 terraform destroy
