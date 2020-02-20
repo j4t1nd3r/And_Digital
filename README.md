@@ -1,6 +1,12 @@
-# Commands Ran in Shell
+# Commands Ran in Shell  
 $Env:AWS_ACCESS_KEY_ID="youraccesskey"  
 $Env:AWS_SECRET_ACCESS_KEY="yoursecretkey"  
+
+>Set the following variable in var.tf to your public IP:  
+
+variable "ssh_IP_restriction" {  
+default = "xx.xx.xx.xx/32"  
+}  
 
 #### Deploy s3 bucket from and_digital_s3  
 
