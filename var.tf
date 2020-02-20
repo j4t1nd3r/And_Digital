@@ -1,3 +1,7 @@
+
+variable "ssh_IP_restriction" {
+default = "188.210.212.98/32"
+}
 variable "private_key_path" {}
 variable "key_name" {}
 variable "region" {

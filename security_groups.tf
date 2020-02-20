@@ -29,7 +29,7 @@ resource "aws_security_group" "nginx-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["188.210.212.98/32"]
+    cidr_blocks = [var.ssh_IP_restriction]
   }
 
   # HTTP access from the VPC
