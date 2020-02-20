@@ -1,7 +1,7 @@
 # Commands Ran in Shell  
 
 
-Access and Secret Key need to be added as enviroment variables for the s3 creation to work:
+>Access and Secret Key need to be added as enviroment variables for the s3 creation to work:
 
 $Env:AWS_ACCESS_KEY_ID="youraccesskey"  
 $Env:AWS_SECRET_ACCESS_KEY="yoursecretkey"  
@@ -14,7 +14,7 @@ default = "0.0.0.0/0/32"
 
 #### Deploy s3 bucket from and_digital_s3  
 
-s3 bucket needs to be created before anything else to store the state file remotely for the main run: 
+>s3 bucket needs to be created before anything else to store the state file remotely for the main run: 
 
 cd .\and_digital_backend\
 Terraform init  
@@ -39,7 +39,7 @@ Terraform destroy
 
 Private Key in repo to show access to vms work  
 
-# Ideal further Steps  
+# Further Steps  
 
 x) remove duplicate code for creation of similar resources  
-x) Have a DNS record to point at the elb.
+x) Have a DNS record to point at the elb. Can switch out elb if required / nicer url
