@@ -1,0 +1,11 @@
+# artifacts
+.terraform
+.terraform.*
+.tfstate
+.tfstate.*
+.json
+.exe
+
+# subfolder
+/and_digital_s3/*.tfstate
+/and_digital_s3/*.tfstate.*
