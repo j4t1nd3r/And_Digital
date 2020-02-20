@@ -1,5 +1,9 @@
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "and-digital-tf-state"
+  # Make cleanup for this exercise easier
+   force_destroy = true
+
+
   # Enable versioning so we can see the full revision history of our
   # state files
   versioning {
